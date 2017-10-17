@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="container">
-    <div id="start">Start</div>
+    <button id="start">Click to Play!</button>
     <section id="question"></section>
     <section id="feedback"></section>
     <p>Score: <strong id="score">0</strong></p>

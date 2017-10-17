@@ -4,6 +4,7 @@
     var $question = document.getElementById('question');
     var $score = document.getElementById('score');
     // var $feedback = document.getElementById('feedback');
+    var $start = document.getElementById('start');
     var score = 0;
     var quiz = {
         "name": "Super Hero Name Quiz",
@@ -16,40 +17,46 @@
         ]
     };
 
-    for (var i = 0, question, answer; i < quiz.questions.length; i++) {
-        question = quiz.questions[i].question;
-        answer = ask(question);
-        check(answer);
-    }
+    $start.addEventListener('click', function () {
+        play(quiz)
+    }, false);
 
-    function update(element, content, klass) {
-
-        var p = element.firstChild || document.createElement("p");
-        p.textContent = content;
-        element.appendChild(p);
-        if (klass) {
-            p.className = klass;
+    function play(quiz) {
+        for (var i = 0, question, answer; i < quiz.questions.length; i++) {
+            question = quiz.questions[i].question;
+            answer = ask(question);
+            check(answer);
         }
 
-    }
+        function check(answer) {
+            console.log(quiz.questions[i].answer);
+            if (answer === quiz.questions[i].answer) {
+                alert('correct!');
+                score++;
+                update($score, score);
+            } else {
+                alert('wrong!');
+            }
+        }
 
-    function ask(question) {
+        function update(element, content, klass) {
 
-        console.log(quiz.question + question);
-        update($question, quiz.question + question);
-        var _question = quiz.question + question;
-        return prompt(_question + "\nEnter your answer:");
+            var p = element.firstChild || document.createElement("p");
+            p.textContent = content;
+            element.appendChild(p);
+            if (klass) {
+                p.className = klass;
+            }
 
-    }
+        }
 
-    function check(answer) {
-        console.log(quiz.questions[i].answer);
-        if (answer === quiz.questions[i].answer) {
-            alert('correct!');
-            score++;
-            update($score, score);
-        } else {
-            alert('wrong!');
+        function ask(question) {
+
+            console.log(quiz.question + question);
+            update($question, quiz.question + question);
+            var _question = quiz.question + question;
+            return prompt(_question + "\nEnter your answer:");
+
         }
     }
 })();
